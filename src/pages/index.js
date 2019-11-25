@@ -1,21 +1,44 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+// Paragraphs.
+import { getParagraph } from "../components/paragraphs/paragraphHelpers";
+
+// styles.
+import '../styles/styles.scss';
+
+const IndexPage = ({data}) => {
+  const paragraphs = data.nodePage.relationships.field_content_segments.map(getParagraph);
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <div className="content-segments">
+        {paragraphs}
+      </div>
+    </Layout>
+  )
+}
+
+export const query = graphql`
+  query homePage {
+    nodePage(drupal_internal__nid: {eq: 2}) {
+      title
+      relationships {
+        field_content_segments {
+          type: __typename
+          ...ParagraphIntroduction
+          ...ParagraphRTE
+          ...ParagraphTwoColumnContent
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
+
+

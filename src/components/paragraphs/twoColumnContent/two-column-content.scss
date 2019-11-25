@@ -1,0 +1,31 @@
+.two-column-component {
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-top: 75px;
+    padding-bottom: 80px;
+    &__column {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      min-height: 150px;
+      // flex: 1 1 0;
+      &:first-of-type {
+        margin-right: 100px;
+      }
+      h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        text-transform: capitalize;
+        line-height: 1.15;
+      }
+      &__copy {
+        padding: 0;
+        text-align: center;
+      }
+    }
+  }
+}
