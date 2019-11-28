@@ -5,8 +5,8 @@ import Img from 'gatsby-image';
 
 const ArticlePrview = ({title, path, image, alt, summary }) => {
   return (
-    <div>
-      <Link to={path}>
+    <div className="gird-item">
+      <Link to={`/articles${path}`}>
         <h2>{title}</h2>
       </Link>
       { image && <Img fluid={image} alt={alt} /> }

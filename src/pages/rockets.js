@@ -8,14 +8,16 @@ const Rockets = ({data}) => {
   return (
     <Layout>
       <div className="container">
-        {rockets.map(rocket => (
-          <Link to={`/rockets/${rocket.flight_number}`} key={rocket.id}>
-            <h2>{ rocket.mission_name }</h2>
-            {rocket.links && rocket.links.mission_patch_small &&
-              <img src={rocket.links.mission_patch_small} alt={ rocket.mission_name }/>
-            }
-          </Link>
-        ))}
+        <div className="grid">
+          {rockets.map(rocket => (
+            <Link to={`/rockets/${rocket.flight_number}`} key={rocket.id}>
+              <h2>{ rocket.mission_name }</h2>
+              {rocket.links && rocket.links.mission_patch_small &&
+                <img src={rocket.links.mission_patch_small} alt={ rocket.mission_name }/>
+              }
+            </Link>
+          ))}
+          </div>
       </div>
     </Layout>
   );

@@ -26,7 +26,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
   articles.data.allNodeArticle.nodes.map(articleData =>
     createPage({
-      path: articleData.path.alias,
+      path: `/articles${articleData.path.alias}`,
       component: path.resolve('src/templates/article.js'),
       context: {
         ArticleId: articleData.id,

@@ -11,9 +11,11 @@ const Articles = ({data}) => {
     <Layout>
       <SEO title='All Articles' />
       <div className="container">
-        {articles.map(article => (
-          <ArticlePreview key={article.id} title={article.title} path={article.path.alias} image={article.relationships.field_image.localFile.childImageSharp ? article.relationships.field_image.localFile.childImageSharp.fluid : false} alt={article.field_image.alt} summary={article.body.summary ? article.body.summary.substring(0, 300) : article.body.processed.substring(0, 300)} />
-        ))}
+        <div className="grid">
+          {articles.map(article => (
+            <ArticlePreview key={article.id} title={article.title} path={article.path.alias} image={article.relationships.field_image.localFile.childImageSharp ? article.relationships.field_image.localFile.childImageSharp.fluid : false} alt={article.field_image.alt} summary={article.body.summary ? article.body.summary.substring(0, 300) : article.body.processed.substring(0, 300)} />
+          ))}
+        </div>
       </div>
     </Layout>
   );
