@@ -14,6 +14,7 @@ const Header = ({ siteTitle }) => (
             <Link to="/about">About</Link>
             <Link to="/articles">Articles</Link>
             <Link to="/gif-me">Gif Me</Link>
+            <Link to="/rockets">SpaceX</Link>
           </nav>
         </div>
       </div>

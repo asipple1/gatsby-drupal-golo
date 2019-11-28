@@ -33,4 +33,28 @@ exports.createPages = async ({ actions, graphql }) => {
       },
     })
   );
+
+  // Spacex
+  const rocketLaunches = await graphql(` 
+    {
+      allSpacexLaunches {
+        nodes {
+          id
+          flight_number
+          mission_name
+        }
+      }
+    }
+  `);
+  rocketLaunches.data.allSpacexLaunches.nodes.filter((rocket) => {
+    return !!rocket.mission_name
+  }).map(rocket =>
+    createPage({
+      path: `/rockets/${rocket.flight_number}`,
+      component: path.resolve('src/templates/rocket.js'),
+      context: {
+        RocketId: rocket.flight_number,
+      },
+    })
+  );
 }

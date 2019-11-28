@@ -34,6 +34,13 @@ module.exports = {
         apiBase: `jsonapi`,
       },
     },
+    {
+      resolve: `gatsby-source-apiserver`,
+      options: {
+        name: `spacexLaunches`,
+        url: `https://api.spacexdata.com/v3/launches`,
+      }
+    },
     `gatsby-plugin-sass`
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
