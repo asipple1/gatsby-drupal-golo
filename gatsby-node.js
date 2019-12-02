@@ -12,27 +12,47 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const articles = await graphql(` 
     {
-      allNodeArticle {
-        nodes {
-          id
-          title
-          path {
-            alias
+      allNodeArticle(sort: {fields: created, order: DESC}) {
+        edges {
+          node {
+            id
+            title
+            path {
+              alias
+            }
+          }
+          next {
+            title
+            path {
+              alias
+            }
+          }
+          previous {
+            id
+            title
+            path {
+              alias
+            }
           }
         }
       }
     }
   `);
 
-  articles.data.allNodeArticle.nodes.map(articleData =>
+  articles.data.allNodeArticle.edges.map(articleData => {
+    const data = articleData.node;
+    const prev = articleData.previous;
+    const next = articleData.next;
     createPage({
-      path: `/articles${articleData.path.alias}`,
+      path: `/articles${data.path.alias}`,
       component: path.resolve('src/templates/article.js'),
       context: {
-        ArticleId: articleData.id,
+        ArticleId: data.id,
+        prev,
+        next
       },
     })
-  );
+  });
 
   // Spacex
   const rocketLaunches = await graphql(` 

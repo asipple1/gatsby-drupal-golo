@@ -19,6 +19,7 @@ class GifMe extends Component {
     // Methods.
     this.searchGifyInput = this.searchGifyInput.bind(this);
     this.randomGif = this.randomGif.bind(this);
+    this.keyPress = this.keyPress.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,12 @@ class GifMe extends Component {
     this.typingTimeout = setTimeout(() => {
       this.randomGif();
     }, 500);
+  }
+
+  keyPress(e){
+    if(e.keyCode === 13){
+      this.randomGif();
+    }
   }
 
   randomGif() {
@@ -53,7 +60,7 @@ class GifMe extends Component {
       <Layout>
         <div className="container">
           <img src={this.state.imageUrl} alt="gif" width="350"/>
-          <input type="text" onChange={this.searchGifyInput} />
+          <input type="text" onChange={this.searchGifyInput} onKeyDown={this.keyPress} />
           <button onClick={this.randomGif}>Give Me Another {this.state.gifySearchTag}!</button>
           <h1>{this.state.gifyTitle}</h1>
           <a href={this.state.gifySource}>Source</a>
