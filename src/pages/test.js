@@ -1,13 +1,19 @@
-import React from 'react';
+import React from "react"
+import { graphql } from "gatsby"
 
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+const ComponentName = ({ data }) => <pre>{JSON.stringify(data, null, 4)}</pre>
 
-const Test = () => (
-  <Layout>
-    <SEO title="testing" />
-    About me test!!
-  </Layout>
-)
+export const query = graphql`
+  {
+    allNodeArticle {
+      nodes {
+        title
+        body {
+          summary
+        }
+      }
+    }
+  }
+`
 
-export default Test;
+export default ComponentName

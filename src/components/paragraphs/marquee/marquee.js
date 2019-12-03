@@ -11,8 +11,8 @@ export const MarqueeParagraph = ({ node }) => {
       <div className="marquee__wrapper">
       {slides.map((slide, index) => {
         return  (
-          <div className="marquee__slide">
-            <h1>{slide.field_marquee_headline}</h1>
+          <div className={`marquee__slide marquee__slide--${slide.field_marquee_content_position ? slide.field_marquee_content_position : 'left' }`} key={index}>
+            <h1>{slide.field_marquee_headline ? slide.field_marquee_headline : node.fall_back_headline}</h1>
             <Img fluid={slide.relationships.field_marquee_image.localFile.childImageSharp.fluid} alt={slide.field_marquee_headline} />
           </div>
         )

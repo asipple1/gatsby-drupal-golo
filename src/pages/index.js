@@ -11,8 +11,13 @@ import { getParagraph } from "../components/paragraphs/paragraphHelpers";
 import '../styles/styles.scss';
 
 const IndexPage = ({data}) => {
+  const pageTitle = data.nodePage.title ? data.nodePage.title : false;
   const paragraphs = data.nodePage.relationships.field_content_segments.map(getParagraph);
-  const marquee = data.nodePage.relationships.field_marquee_carousel ? getParagraph(data.nodePage.relationships.field_marquee_carousel) : false;
+  let marquee = false;
+  if (data.nodePage.relationships.field_marquee_carousel) {
+    data.nodePage.relationships.field_marquee_carousel.fall_back_headline = pageTitle;
+    marquee = getParagraph(data.nodePage.relationships.field_marquee_carousel);
+  }
 
   return (
     <Layout>

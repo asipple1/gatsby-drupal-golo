@@ -4,13 +4,13 @@ import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 
 const ArticlePrview = ({title, path, image, alt, summary }) => {
-
+  const imageThing = image ? <Img fluid={image} alt={alt} /> : false;
   return (
     <div className="gird-item">
       <Link to={`/articles${path}`}>
         <h2>{title}</h2>
       </Link>
-      { image && <Img fluid={image} alt={alt} /> }
+      { imageThing }
       <div dangerouslySetInnerHTML ={{__html: summary}} />
     </div>
   )
