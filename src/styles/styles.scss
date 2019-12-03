@@ -39,7 +39,6 @@ body {
 .header {
   position: relative;
   box-shadow: 0 0 10px #0d0d0d5e;
-  margin-bottom: 80px;
   &__inner {
     display: flex;
     flex-direction: row;
@@ -76,6 +75,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 1rem;
+  margin-top: 40px;
 }
 
 .content-segments {
