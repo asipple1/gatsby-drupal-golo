@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 
 const ArticlePrview = ({title, path, image, alt, summary }) => {
+
   return (
     <div className="gird-item">
       <Link to={`/articles${path}`}>

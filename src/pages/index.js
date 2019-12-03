@@ -12,10 +12,12 @@ import '../styles/styles.scss';
 
 const IndexPage = ({data}) => {
   const paragraphs = data.nodePage.relationships.field_content_segments.map(getParagraph);
+  const marquee = data.nodePage.relationships.field_marquee_carousel ? getParagraph(data.nodePage.relationships.field_marquee_carousel) : false;
 
   return (
     <Layout>
       <SEO title="Home" />
+      {marquee}
       <div className="content-segments">
         {paragraphs}
       </div>
@@ -28,6 +30,10 @@ export const query = graphql`
     nodePage(drupal_internal__nid: {eq: 2}) {
       title
       relationships {
+        field_marquee_carousel {
+          type: __typename
+          ...ParagraphMarquee
+        }
         field_content_segments {
           type: __typename
           ...ParagraphIntroduction
